@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+  </head>
+  <body class="h-100 w-100">
+    <section
+      class="vh-100 w-100 d-flex justify-content-center align-items-center"
+    >
+      <div
+        class="w-50 d-flex shadow-lg rounded"
+        style="background-color: #d2d2d4"
+      >
+        <div class="w-75">
+          <form class="w-100 my-4 mx-5" method="post">
+            {% csrf_token %}
+            <div class="mb-3 me-3">
+              <label class="form-label fw-bold">Username</label>
+              <input
+                type="text"
+                class="form-control w-100"
+                id=""
+                name="username"
+              />
+            </div>
+            <div class="mb-3 me-3">
+              <label class="form-label fw-bold">Password</label>
+              <input
+                type="password"
+                class="form-control w-100"
+                id="password"
+                name="password"
+              />
+            </div>
+            <div class="mb-3 me-3">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="show-pass"
+                id="show-pass"
+              />
+              <label class="form-check-label" for="show-pass"
+                >Show password</label
+              >
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="logBtn">
+              Submit
+            </button>
+          </form>
+        </div>
+        <div class="w-25 my-4 mx-5 py-5">
+          <div
+            class="w-100 h-100 rounded-circle overflow-hidden d-flex justify-content-center align-items-center bg-light shadow"
+          >
+            <img
+              class="w-75"
+              src="{% static 'pictures/GA logo.jpeg' %}"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% load static %}
+    <script src="{% static 'js/app.js' %}"></script>
+  </body>
+</html>

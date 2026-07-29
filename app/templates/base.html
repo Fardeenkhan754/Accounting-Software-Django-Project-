@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+    <style>
+      @media print {
+        form,
+        .btn,
+        nav,
+        .navbar,
+        .no-print {
+          display: none !important;
+        }
+
+        table {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body class="">
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light px-4 shadow-sm">
+      <div class="container-fluid">
+        <a
+          class="navbar-brand me-5 d-flex align-items-center"
+          href="#"
+          style="height: 100%; width: 10%"
+        >
+          {% load static %}
+          <img
+            src="{% static 'pictures/GA logo.jpeg' %}"
+            alt="logo"
+            class="w-25"
+          />
+          <span class="fw-bold">Graphics</span>
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav gap-4">
+            <li class="nav-item d-flex align-items-center">
+              <a class="nav-link" aria-current="page" href="/add_account">
+                Add Account</a
+              >
+            </li>
+            <li class="nav-item d-flex align-items-center">
+              <a class="nav-link" href="/cash_book">Cash Book</a>
+            </li>
+            <li class="nav-item d-flex align-items-center">
+              <a class="nav-link" href="/reports">Reports</a>
+            </li>
+            <li class="nav-item d-flex align-items-center">
+              <a class="nav-link" href="/account_ledger">Account Ledger</a>
+            </li>
+            <li class="nav-item d-flex align-items-center">
+              <a class="nav-link" href="/backup">Backup</a>
+            </li>
+            <li class="nav-item d-flex align-items-center">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% if messages %} {% for message in messages %}
+    <div class="container-fluid mt-3">
+      <div
+        class="alert alert-{{ message.tags }} alert-dismissible fade show"
+        role="alert"
+      >
+        {{ message }}
+
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+        ></button>
+      </div>
+    </div>
+    {% endfor %} {% endif %}
+    <section>{% block content %} {% endblock %}</section>
+    {% load static %}
+    <script src="{% static 'js/app.js' %}"></script>
+    {% load static %}
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  </body>
+</html>

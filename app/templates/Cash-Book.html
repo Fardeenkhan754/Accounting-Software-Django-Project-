@@ -1,0 +1,93 @@
+{% extends "base.html" %}laskdlkfd;lklk{% block title %}Cash Book{% endblock %}
+{% block content %}
+<section class="col-12 cash-book-section p-5">
+  <div class="row w-100 p-3 overflow-scroll" style="height: 35rem">
+    <div class="col-12">
+      <form action="" method="post">
+        {% csrf_token %}
+        <div>
+          <div class="mb-4">
+            <div class="col-3 mb-3">
+              <label for="">Date</label>
+              <input type="date" id="date" class="form-control" name="date" />
+            </div>
+            <div class="d-flex flex-row">
+              <button class="btn btn-primary btn-sm px-4 fw-bold" id="prevDate">
+                Previous
+              </button>
+              <button
+                class="btn btn-primary btn-sm px-4 fw-bold ms-2"
+                id="nextDate"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+          <div class="d-flex gap-4">
+            <div class="col-3 mb-4">
+              <label for="">Accounts</label>
+
+              <select
+                id="accounts"
+                name="account"
+                class="form-control"
+                required
+              >
+                <option value="" hidden></option>
+                {% for account in accounts %}
+                <option value="{{ account.id }}">{{ account.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="col-4 mb-4">
+              <label for="">Description/Details</label>
+              <input
+                type="text"
+                id="description"
+                class="form-control"
+                name="description"
+                required
+              />
+            </div>
+          </div>
+          <div class="mb-4">
+            <div class="col-2">
+              <label for="">Jama</label>
+              <input
+                type="number"
+                class="form-control"
+                value="0"
+                id="jama"
+                name="jama"
+              />
+            </div>
+
+            <div class="col-2 my-3">
+              <label for="">Kharch</label>
+              <input
+                type="number"
+                class="form-control"
+                value="0"
+                id="kharch"
+                name="kharch"
+              />
+            </div>
+          </div>
+          <div class="">
+            <button class="btn btn-danger btn-lg px-4 fw-bold" id="ClareBtn">
+              Clare
+            </button>
+            <button
+              class="btn btn-success btn-lg px-4 fw-bold ms-3"
+              type="submit"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

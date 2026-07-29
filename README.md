@@ -4,10 +4,6 @@ A modern desktop accounting application built with **Python**, **Django**, **SQL
 
 ## Features
 
-### Dashboard
-- Business overview
-- Quick access to all modules
-
 ### Customer Management
 - Add new customers
 - Edit customer details

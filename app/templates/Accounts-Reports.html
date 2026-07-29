@@ -1,0 +1,119 @@
+{% extends "base.html" %}laskdlkfd;lklk{% block title %}Account Report{% endblock %}
+{% block content %}
+
+<section class="p-3">
+  <form method="get" action="" class="d-flex align-items-center no-print">
+    <div class="d-flex flex-column">
+      <div class="col-1">
+        <label for="" class="form-label text-nowrap me-5"
+          ><h6>Account Legder :</h6></label
+        >
+      </div>
+      <div class="col-12">
+        <div class="d-flex w-100 gap-5">
+          <div class="d-flex mb-2 align-items-center col-12">
+            <label for="" class="form-label col-3 d-flex">Account :</label>
+            <select name="account" class="form-select">
+
+              <option value="" hidden>Select Account</option>
+
+              {% for acc in accounts %}
+
+              <option value="{{ acc.id }}" {% if selected_account == acc.id|stringformat:"s" %} selected{% endif %}>
+                 {{ acc.name }}
+              </option>
+
+              {% endfor %}
+
+            </select>
+
+          </div>
+        </div>
+      </div>
+      <div class="ps-5 d-flex gap-2 justify-content mt-2">
+        <button class="btn btn-outline-primary fw-bold btn-sm" type="submit">
+          Show Report
+        </button>
+        <button class="btn btn-outline-success fw-bold btn-sm">
+          Download CVS
+        </button>
+        <button  onclick="window.print()" class="btn btn-outline-danger fw-bold btn-sm">Print</button>
+      </div>
+    </div>
+  </form>
+  <hr class="text-dark opacity-100 border-2 no-print" />
+  <section>
+    {% if transactions %}
+    <div>
+      <h6>
+        Transaction Report from:
+        <span class="fw-bold">{{ start_date }}</span> to:
+        <span class="fw-bold">{{end_date }}</span>
+      </h6>
+    </div>
+    <table class="table">
+
+    <tr>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Jama</th>
+        <th>Kharch</th>
+    </tr>
+
+    {% if account %}
+
+        {% if account.jama != 0 or account.kharch != 0 %}
+
+        <tr>
+            <td>-</td>
+            <td><b>Opening Balance</b></td>
+            <td>{{ account.dabit }}</td>
+            <td>{{ account.credit }}</td>
+        </tr>
+
+        {% endif %}
+
+    {% endif %}
+
+    {% for t in transactions %}
+
+    <tr>
+
+        <td>{{ t.date }}</td>
+
+        <td>{{ t.description }}</td>
+
+        <td>{{ t.jama }}</td>
+
+        <td>{{ t.kharch }}</td>
+
+    </tr>
+
+    {% empty %}
+
+    <tr>
+
+        <td colspan="4">
+
+            No Transactions
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+    <tfoot>
+        <tr>
+          <th colspan="1">Total</th>
+          <th>Balance: {{ balance }}</th>
+          <th>{{ total_jama }}</th>
+          <th>{{ total_kharch }}</th>
+        </tr>
+      </tfoot>
+
+</table>
+
+    {% endif %}
+  </section>
+</section>
+{% endblock %}
